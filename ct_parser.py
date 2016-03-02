@@ -6,6 +6,7 @@ session_legs = None
 class CtDocument(BaseDocument):
     '''override parse to parse ocg msg_trace file into blocks'''
     def parse(self, content):
+        content = content.replace('\xff', '@').replace('\r','')
 	block_contents = list()
         block = ""
         flag = 0
@@ -41,7 +42,7 @@ class CtBlock(BaseBlock):
         if self.cat != "sip":
             return
         import re
-        r = re.compile(".*Call-ID\s*:\s*(.*?)\r\n", re.S|re.M)
+        r = re.compile(".*Call-ID\s*:\s*(.*?)\n", re.S|re.M)
         m = r.match(self.content, re.M)
         if m is None:
             return
@@ -57,5 +58,14 @@ class CtBlock(BaseBlock):
 if __name__=="__main__":
     f = open("./scf_0_11_1.ct", "r")
     doc=CtDocument(CtBlock)
-    print doc.transform(f.read())
+    doc.transform(f.read())
+    for i in doc.blocks:
+        print i.assemble()
+
+        #if i.content.find('\xff\xff\xff\xff')>=0:
+        #    i.content = i.content.replace('\xff', '@')
+        #    print i.assemble()
+        #    print i.content
+
+
     f.close()

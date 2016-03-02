@@ -1,8 +1,9 @@
 body            { font-family: 'Courier New', Georgia, sans-serif; font-weight:bold; } 
-breaker         { background: #fff; }
-#default     { background: #000; color: #fff}
-#dcc       	{ background: #00F5FF; color: #000}
-#ss7             { background: #CDFFD0; color:#000}
+breaker      { background: #fff; }
+.default     { background: #000; color: #fff}
+.dcc       	 { background: #00F5FF; color: #000}
+.ss7         { background: #CDFFD0; color:#000}
+.sip         { background: #707070; color: #fff}
 #leg_a       { background: #707070;color: #FFADAD;}
 #leg_b       { background: #707070;color: #99FF79;}
 #leg_c       { background: #707070;color: #FEFF79;}

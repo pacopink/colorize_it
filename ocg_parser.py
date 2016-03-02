@@ -16,10 +16,10 @@ class OcgDocument(BaseDocument):
                     if len(block)>0:
                         #save last block and init a new block
                         block_contents.append(block)
-                    block = l+"\n"
+                    block = ""
                 elif flag == 1: #meet the second line of '---' middle of block
                     flag = 0
-                    block += l+"\n"
+                    #block += l+"\n"
             else:
                 block += l+"\n"
         if len(block)>0:
