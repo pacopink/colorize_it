@@ -1,7 +1,7 @@
 ========= General Information ==========
-I am analyzing msg trace files that containse with multiple dialogs/transactions for a single call session in plaint txt file.
-It is crazily difficult to keep track on each transaction in mind while reading it in plaint text mode.
-So I develop this webapp based from python flask to upload my message trace file, and automatically recognize the type,
+I am analyzing msg trace files that containing multiple dialogs/transactions for a single call session,
+It is crazily difficult to keep track on each transaction in mind while reading it in plain text mode.
+So I develop this python flask webapp to upload my message trace file, and automatically recognize the type,
 then select a suitable parser to: 
 1. parse the message trace into message blocks.
 2. categrize each blocks' category and subtypes
