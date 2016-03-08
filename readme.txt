@@ -11,6 +11,10 @@ then select a suitable parser to:
 After client browser get those response, it will render each message block via the tag, according to the css,
 in this way, a colorized msg trace can be retrieved.
 
+2016-3-8
+enhance the GUI
+some javascripts are added to filter via message categories
+
 ========= Usage ==========
 Assume that you have python and flask in place,
 simply run run.sh to get it started, listening on '0.0.0.0:5050', with DEBUG flag on,

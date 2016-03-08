@@ -1,7 +1,7 @@
 #!/bin/env python
 
 import os
-from flask import Flask, request, redirect, url_for
+from flask import *
 from werkzeug import secure_filename
 
 import render
@@ -17,6 +17,23 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 @app.route('/', methods=['GET', 'POST'])
+def font_page():
+    if request.method == 'GET':
+        return render_template('layout.html')
+    else:
+        file = request.files['file']
+	content = file.stream.read()
+	(resp_code, resp) = render.render_msg2(file.filename, content)
+        cats = set()
+        if resp_code == 200:
+            for i in resp:
+                cats.add(i.cat)
+            return render_template('layout.html', blocks=resp, cats = list(cats))
+        else:
+            return render_template('layout.html', errmsg=render.error_msg())
+    
+
+@app.route('/v1', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         file = request.files['file']

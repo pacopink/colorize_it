@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style4js.css') }}">
+<!-- <meta http-equiv="refresh" content="10">  -->
+<style type="text/css">
+*{ margin:0; padding:0;}
+ 
+html,body{
+ padding:0px!important;
+ padding:100px 0px;
+ width:100%;
+ height:100%;
+ overflow:hidden;
+}
+ 
+#middle_left{
+ padding: 10px;
+ margin: 10px;
+ position: absolute!important;
+ height:100%!important;
+ top:auto;
+ bottom:auto;
+ width:20%;
+ float: left;
+ background:#cccccc;
+ text-align:left;
+ overflow: auto;
+}
+#middle_right {
+ padding: 10px;
+ margin: 10px;
+ position: relative!important;
+ float: right;
+ height:100%!important;
+ top:auto;
+ bottom:auto;
+ width:80%;
+ background:#fefefe;
+ text-align:left;
+ overflow: auto;
+}
+
+</style>
+    <script type="text/javascript" src="{{ url_for('static', filename='jquery.js') }}"> </script>
+    <script>
+    $(document).ready(function(){
+            $("input.filter").click(function() { //for filters of msg category
+                i = $(this).attr("id");
+                v = $(this).attr("value");
+                if (document.getElementById(i).checked) {
+                    $("p."+v).show();
+                } else {
+                    $("p."+v).hide();
+                }
+
+                });
+
+        });
+    </script>
+    </head>
+
+    <body>
+        <div id="middle_left">
+            <h3>Upload a File to Colorize</h3>
+            <form action="" method=post enctype=multipart/form-data>
+                <p><input type=file name=file><br/><br/>
+                 <input type=submit value=Colorize!!>
+            </form>
+            <br/>
+            {% if cats %}
+            <h3>Select Category to Display</h3>
+            <form> 
+            {% for cat in cats %}
+                {{ cat }}
+                <input type="checkbox" value="{{ cat }}" checked=true class="filter" id="{{ cat }}_filter"><br/>
+            {% endfor %}
+            </form>
+            {% endif %}
+        </div>
+        <div id="middle_right">
+            {% for block in blocks %}
+            <p class="{{ block.cat }}">
+            {% if block.subtype %}
+            <subtype id="{{ block.subtype }}">
+            {% endif %}
+            {{ block.escaped_content|safe }}
+            {% if block.subtype %}
+            </subtype>
+            {% endif %}
+            </p>
+            <breaker><br/><breaker/>
+            {% endfor %}
+            {{ errmsg|safe }}
+        </div>
+    </body>
+</html>
