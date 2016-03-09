@@ -64,12 +64,18 @@ html,body{
         <div id="middle_left">
             <h3>Upload a File to Colorize</h3>
             <form action="" method=post enctype=multipart/form-data>
-                <p><input type=file name=file><br/><br/>
-                 <input type=submit value=Colorize!!>
+                <p><input type=file name=file><br/>
+                <input type=submit value=Colorize!!>
             </form>
-            <br/>
+            <br/><br/>
+
+            {% if filename %}
+            <h3>File Name:</h3>
+            {{ filename }}
+            <br/><br/></br>
+
+            {% endif %}
             {% if cats %}
-            <h3>Current file:<br/>{{ filename }}</h3><br/>
             <h3>Select Category to Display</h3>
             <form> 
             {% for cat in cats %}
@@ -80,9 +86,6 @@ html,body{
             {% endif %}
         </div>
         <div id="middle_right">
-            {% if filename %}
-            <h3>File Name:<br/>{{ filename }}</h3><br/>
-            {% endif %}
             {% for block in blocks %}
             <p class="{{ block.cat }}">
             {% if block.subtype %}
