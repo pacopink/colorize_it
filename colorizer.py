@@ -28,9 +28,9 @@ def font_page():
         if resp_code == 200:
             for i in resp:
                 cats.add(i.cat)
-            return render_template('layout.html', blocks=resp, cats = list(cats))
+            return render_template('layout.html', blocks=resp, cats = list(cats), filename=file.filename)
         else:
-            return render_template('layout.html', errmsg=render.error_msg())
+            return render_template('layout.html', errmsg=render.error_msg(), filename=file.filename)
     
 
 @app.route('/v1', methods=['GET', 'POST'])

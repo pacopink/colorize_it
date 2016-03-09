@@ -5,12 +5,12 @@ import re
 
 #list of parsers ['filename pattern', 'document instance', 'file type name'] 
 parser_map = [
-        (re.compile(r'.*\.ct'), CtDocument(CtBlock), ".ct"),
-        (re.compile(r'msg_.*\.txt'), OcgDocument(OcgBlock), "ocg msg trace"),
+        (re.compile(r'.*\.ct'), CtDocument(CtBlock), "*.ct"),
+        (re.compile(r'msg_.*\.txt'), OcgDocument(OcgBlock), "msg_*.txt"),
         ]
 
 def error_msg():
-    return '<p id="err">Sorry, I can only support %s files, your upload file type is not supported<p/>'%(', '.join(map(lambda p:p[2], parser_map)))
+    return '<p id="err">Sorry, I can only support %s files, your upload file type is not supported<p/>'%(', '.join(map(lambda p:'"'+p[2]+'"', parser_map)))
 
 head = '''<!doctype html>
 <html>

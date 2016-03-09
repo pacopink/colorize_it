@@ -69,6 +69,7 @@ html,body{
             </form>
             <br/>
             {% if cats %}
+            <h3>Current file:<br/>{{ filename }}</h3><br/>
             <h3>Select Category to Display</h3>
             <form> 
             {% for cat in cats %}
@@ -79,6 +80,9 @@ html,body{
             {% endif %}
         </div>
         <div id="middle_right">
+            {% if filename %}
+            <h3>File Name:<br/>{{ filename }}</h3><br/>
+            {% endif %}
             {% for block in blocks %}
             <p class="{{ block.cat }}">
             {% if block.subtype %}
