@@ -69,6 +69,6 @@ def uploaded_file(filename):
 if __name__ == '__main__':
     port = 5050
     host = '0.0.0.0'
-    app.config['DEBUG'] = True
+    app.config['DEBUG'] = False
 
     app.run(host=host, port=port)

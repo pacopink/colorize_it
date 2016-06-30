@@ -7,6 +7,7 @@ import re
 parser_map = [
         (re.compile(r'.*\.ct'), CtDocument(CtBlock), "*.ct"),
         (re.compile(r'msg_.*\.txt'), OcgDocument(OcgBlock), "msg_*.txt"),
+        (re.compile(r'msg_.*'), OcgDocument(OcgBlock), "msg_*"),
         ]
 
 def error_msg():
